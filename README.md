@@ -14,7 +14,7 @@ Dependencies
 
 Connexion
 ======================
-This check is for checking the SSH connexion to the distant server.
+This check is for checking the SSH connexion to the distant server. This is done by the `check_ssh_connexion.py` script.
 
 [//]: # (begin generate_help: check_ssh_connexion.py)
 ### Usage
@@ -43,8 +43,10 @@ Options:
 ```
 [//]: # (end generate_help)
 
-  $ check_ssh_connexion.py -H localhost -u shinken
-
+###Example
+```shell
+check_ssh_connexion.py -H localhost -u shinken
+```
 
 
 Memory
@@ -82,14 +84,17 @@ Options:
 ```
 [//]: # (end generate_help)
 
-  $ check_memory_by_ssh.py -H localhost -u shinken -w "75%" -c "90%"
+### Example
+```shell
+check_memory_by_ssh.py -H localhost -u shinken -w "75%" -c "90%"
+```
 
 
 
 
 Uptime
 ======================
-The Uptime check is done by the `check_uptime_by_ssh.py` script. It only take a -c option, the number of second : below it's critical, higher it's ok. By default it's 3600s.
+The Uptime check is done by the `check_uptime_by_ssh.py` script. It only take a `-c` option, the number of second : below it's critical, higher it's ok. By default it's 3600s.
 
 [//]: # (begin generate_help: check_uptime_by_ssh.py)
 ### Usage
@@ -115,7 +120,10 @@ Options:
 ```
 [//]: # (end generate_help)
 
-  $ check_uptime_by_ssh.py -H localhost -u shinken -c 3600
+### Example
+```shell
+check_uptime_by_ssh.py -H localhost -u shinken -c 3600
+```
 
 
 
@@ -152,7 +160,10 @@ Options:
 ```
 [//]: # (end generate_help)
 
-  $ check_ntp_sync_by_ssh.py -H localhost -u shinken -w 10 -c 60
+### Example
+```shell
+check_ntp_sync_by_ssh.py -H localhost -u shinken -w 10 -c 60
+```
 
 
 Processes (Memory)
@@ -189,14 +200,21 @@ Options:
 ```
 [//]: # (end generate_help)
 
-  Look that the sum of all *chrome* processes are not over 700 or 800MB
-  $check_processes_by_ssh.py -H localhost -u shinken -C chrome -w 700 -c 800 -S
+### Examples
+* Look that the sum of all *chrome* processes are not over 700 or 800MB
+  ```shell
+  check_processes_by_ssh.py -H localhost -u shinken -C chrome -w 700 -c 800 -S
+  ```
 
-  Look for each *chrome* processe if they are not over 100 or 200MB
-  $check_processes_by_ssh.py -H localhost -u shinken -C chrome -w 100 -c 200
+* Look for each *chrome* processe if they are not over 100 or 200MB
+  ```shell
+  check_processes_by_ssh.py -H localhost -u shinken -C chrome -w 100 -c 200
+  ```
   
-  Look for all process, and warn if one is over 100/200MB
-  $check_processes_by_ssh.py -H localhost -u shinken -w 100 -c 200 
+* Look for all process, and warn if one is over 100/200MB
+  ```shell
+  check_processes_by_ssh.py -H localhost -u shinken -w 100 -c 200
+  ``` 
 
 
 Disks
@@ -237,14 +255,17 @@ Options:
 ```
 [//]: # (end generate_help)
 
-  $ check_disks_by_ssh.py -H localhost -u shinken -w "75%" -c "90%"
+### Example
+```shell
+check_disks_by_ssh.py -H localhost -u shinken -w "75%" -c "90%"
+```
 
 
 
 Load average
 =====================
 The load average values are checks with the `check_load_average_by_ssh.py` script.
-There are two modes : strict values, and cpu based values. 'default : strict)
+There are two modes : strict values, and cpu based values. default : strict)
 
 [//]: # (begin generate_help: check_load_average_by_ssh.py)
 ### Usage
@@ -276,11 +297,16 @@ Options:
 ```
 [//]: # (end generate_help)
 
-  Will warn if the load average is highen than 1 or 2
-  $ check_load_average_by_ssh.py -H localhost -u shinken -w 1,1,1 -c 2,2,2
+### Examples
+* Will warn if the load average is higher than 1 or 2
+  ```shell
+  check_load_average_by_ssh.py -H localhost -u shinken -w 1,1,1 -c 2,2,2
+  ```
 
-  Will warn if the load average is highen than 1*nb_cpus or 2*nb_cpus
-  $ check_load_average_by_ssh.py -H localhost -u shinken -w 1,1,1 -c 2,2,2 -C
+* Will warn if the load average is higher than 1*nb_cpus or 2*nb_cpus
+  ```shell
+  check_load_average_by_ssh.py -H localhost -u shinken -w 1,1,1 -c 2,2,2 -C
+  ```
   
   
 CPU activities
@@ -308,7 +334,10 @@ Options:
 ```
 [//]: # (end generate_help)
 
-  $ check_cpu_stats_by_ssh.py -H localhost -u shinken
+### Example
+```shell
+check_cpu_stats_by_ssh.py -H localhost -u shinken
+```
 
 
 
@@ -339,7 +368,10 @@ Options:
 ```
 [//]: # (end generate_help)
 
-  $ check_disks_stats_by_ssh.py -H localhost -u shinken
+### Example
+```shell
+check_disks_stats_by_ssh.py -H localhost -u shinken
+```
 
 
 
@@ -368,12 +400,15 @@ Options:
 ```
 [//]: # (end generate_help)
 
-  $ check_tcp_states_by_ssh.py - H localhost -u shinken
+### Example
+```shell
+check_tcp_states_by_ssh.py - H localhost -u shinken
+```
 
 
 KERNEL stats
 ==================
-The KERNEL states are checked by the `check_kernel_stats_by_ssh.py` plugin. No warning nor critical values need.
+The KERNEL states are checked by the `check_kernel_stats_by_ssh.py` script. No warning nor critical values need.
 
 [//]: # (begin generate_help: check_kernel_stats_by_ssh.py)
 ### Usage
@@ -396,7 +431,10 @@ Options:
 ```
 [//]: # (end generate_help)
 
-  $ check_kernel_stats_by_ssh.py - H localhost -u shinken
+### Example
+```shell
+check_kernel_stats_by_ssh.py - H localhost -u shinken
+```
 
 
 NFS stats
@@ -430,7 +468,10 @@ Options:
 ```
 [//]: # (end generate_help)
 
-  $ check_nfs_stats_by_ssh.py - H localhost -u shinken
+### Example
+```shell
+check_nfs_stats_by_ssh.py - H localhost -u shinken
+```
 
 
 
@@ -467,11 +508,14 @@ Options:
 ```
 [//]: # (end generate_help)
 
-  $ check_net_stats_by_ssh.py - H localhost -u shinken
+### Example
+```shell
+check_net_stats_by_ssh.py - H localhost -u shinken
+```
 
 Read Only file systems
 ==================
-The file system mount are checks. If a FS is in read only, it will raise a critical error.
+The file system mount are checks. If a FS is in read only, it will raise a critical error. This is done by the `check_ro_filesystem_by_ssh.py` script.
 
 [//]: # (begin generate_help: check_ro_filesystem_by_ssh.py)
 ### Usage
@@ -502,5 +546,7 @@ Options:
 ```
 [//]: # (end generate_help)
 
-  $ check_ro_filesystem_by_ssh.py - H localhost -u shinken
-
+### Example
+```shell
+check_ro_filesystem_by_ssh.py - H localhost -u shinken
+```
