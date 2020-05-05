@@ -1,19 +1,36 @@
-io-shinken-checks-linux
-=======================
+# io-shinken-checks-linux
 
 Specifics checks for linux based on pure ssh polling, with nothing to install on the target
 
+[//]: # (begin generate_toc)
+## Table of Contents
 
-Dependencies
-======================
+1. [Dependencies](#dependencies-)
+2. [Connexion](#connexion-)
+3. [Memory](#memory-)
+4. [Uptime](#uptime-)
+5. [NTP Sync](#ntp-sync-)
+6. [Processes (Memory)](#processes-memory-)
+7. [Disks](#disks-)
+8. [Load average](#load-average-)
+9. [CPU activities](#cpu-activities-)
+10. [DISKS activities](#disks-activities-)
+11. [TCP states](#tcp-states-)
+12. [KERNEL stats](#kernel-stats-)
+13. [NFS stats](#nfs-stats-)
+14. [Interface activities](#interface-activities-)
+15. [Read Only file systems](#read-only-file-systems-)
+
+[//]: # (end generate_toc)
+
+## Dependencies [📖](#table-of-contents)
  * python
  * python-paramiko
 
 
 
 
-Connexion
-======================
+## Connexion [📖](#table-of-contents)
 This check is for checking the SSH connexion to the distant server. This is done by the `check_ssh_connexion.py` script.
 
 [//]: # (begin generate_help: check_ssh_connexion.py)
@@ -49,8 +66,7 @@ check_ssh_connexion.py -H localhost -u shinken
 ```
 
 
-Memory
-======================
+## Memory [📖](#table-of-contents)
 The Memory check is done by the `check_memory_by_ssh.py` script.
 
 [//]: # (begin generate_help: check_memory_by_ssh.py)
@@ -92,8 +108,7 @@ check_memory_by_ssh.py -H localhost -u shinken -w "75%" -c "90%"
 
 
 
-Uptime
-======================
+## Uptime [📖](#table-of-contents)
 The Uptime check is done by the `check_uptime_by_ssh.py` script. It only take a `-c` option, the number of second : below it's critical, higher it's ok. By default it's 3600s.
 
 [//]: # (begin generate_help: check_uptime_by_ssh.py)
@@ -127,8 +142,7 @@ check_uptime_by_ssh.py -H localhost -u shinken -c 3600
 
 
 
-NTP Sync
-======================
+## NTP Sync [📖](#table-of-contents)
 The NTP sync check is done by the `check_ntp_sync_by_ssh.py` script. It will go in warning if no ntp server is the reference, and -w/-c options will set the maximum delay values.
 
 [//]: # (begin generate_help: check_ntp_sync_by_ssh.py)
@@ -166,8 +180,7 @@ check_ntp_sync_by_ssh.py -H localhost -u shinken -w 10 -c 60
 ```
 
 
-Processes (Memory)
-=====================
+## Processes (Memory) [📖](#table-of-contents)
 Look at the memory of a process, or a pack of processes. It's done by the `check_processes_by_ssh` script
 
 [//]: # (begin generate_help: check_processes_by_ssh.py)
@@ -217,8 +230,7 @@ Options:
   ``` 
 
 
-Disks
-======================
+## Disks [📖](#table-of-contents)
 The Disks check is done by the `check_disks_by_ssh.py` script.
 
 [//]: # (begin generate_help: check_disks_by_ssh.py)
@@ -262,8 +274,7 @@ check_disks_by_ssh.py -H localhost -u shinken -w "75%" -c "90%"
 
 
 
-Load average
-=====================
+## Load average [📖](#table-of-contents)
 The load average values are checks with the `check_load_average_by_ssh.py` script.
 There are two modes : strict values, and cpu based values. default : strict)
 
@@ -309,8 +320,7 @@ Options:
   ```
   
   
-CPU activities
-====================
+## CPU activities [📖](#table-of-contents)
 The cpu states are checks by the `check_cpu_stats_by_ssh.py` script. There is no warning or critical values need here.
 
 [//]: # (begin generate_help: check_cpu_stats_by_ssh.py)
@@ -341,8 +351,7 @@ check_cpu_stats_by_ssh.py -H localhost -u shinken
 
 
 
-DISKS activities
-===================
+## DISKS activities [📖](#table-of-contents)
 The disks I/O are checked by the `check_disks_stats_by_ssh.py`. No warning nor critical values need.
 
 [//]: # (begin generate_help: check_disks_stats_by_ssh.py)
@@ -375,8 +384,7 @@ check_disks_stats_by_ssh.py -H localhost -u shinken
 
 
 
-TCP states
-==================
+## TCP states [📖](#table-of-contents)
 The TCP states are checked by the `check_tcp_states_by_ssh.py` plugin. No warning nor critical values need.
 
 [//]: # (begin generate_help: check_tcp_states_by_ssh.py)
@@ -406,8 +414,7 @@ check_tcp_states_by_ssh.py - H localhost -u shinken
 ```
 
 
-KERNEL stats
-==================
+## KERNEL stats [📖](#table-of-contents)
 The KERNEL states are checked by the `check_kernel_stats_by_ssh.py` script. No warning nor critical values need.
 
 [//]: # (begin generate_help: check_kernel_stats_by_ssh.py)
@@ -437,8 +444,7 @@ check_kernel_stats_by_ssh.py - H localhost -u shinken
 ```
 
 
-NFS stats
-==================
+## NFS stats [📖](#table-of-contents)
 The NFS states are checked by the `check_nfs_stats_by_ssh.py` plugin. No warning nor critical values need.
 
 [//]: # (begin generate_help: check_nfs_stats_by_ssh.py)
@@ -475,8 +481,7 @@ check_nfs_stats_by_ssh.py - H localhost -u shinken
 
 
 
-Interface activities
-=================
+## Interface activities [📖](#table-of-contents)
 The network activity is checked by the `check_net_stats_by_ssh.py` plugin. No need for warning nor critical.
 
 [//]: # (begin generate_help: check_net_stats_by_ssh.py)
@@ -513,8 +518,7 @@ Options:
 check_net_stats_by_ssh.py - H localhost -u shinken
 ```
 
-Read Only file systems
-==================
+## Read Only file systems [📖](#table-of-contents)
 The file system mount are checks. If a FS is in read only, it will raise a critical error. This is done by the `check_ro_filesystem_by_ssh.py` script.
 
 [//]: # (begin generate_help: check_ro_filesystem_by_ssh.py)
